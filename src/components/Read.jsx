@@ -8,7 +8,7 @@ import "../styles/read.css";
 const Read = () => {
   const { id } = useParams();
 
-  const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
+  
   const [datos, setDatos] = useState([]);
   const [loading, setLoading] = useState(true);
 
