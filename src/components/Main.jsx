@@ -4,7 +4,7 @@ import axios from "axios";
 import { Container, Row } from "react-bootstrap";
 import CardPokemon from "./CardPokemon";
 import {Button} from "../styled-components/Button"
-
+import "../styles/Main.css"
 
 const Main = () => {
   const [pokemones, setPokemones] = useState([]);
@@ -13,7 +13,9 @@ const Main = () => {
   const [nextPok, setNextPok] = useState();
   const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
 
-  const handleSearch = () => {};
+  const handleSearch = () => {
+    console.log("aqui buscaria mi pokemon con find o includes")
+  };
 
   const pokeFun = async () => {
     setLoading(true);
@@ -46,7 +48,7 @@ const Main = () => {
   return (
     <>
       <Container className="text-center">
-        <h1>Bienvenidos a Pokelandia</h1>
+        <h1 className="pt-3 text-primary">Pokedex Landertech</h1>
         <br />
 
         <input type="text" placeholder="ingresa un nombre" />

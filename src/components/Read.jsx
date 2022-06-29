@@ -1,7 +1,9 @@
 import React from "react";
-import { useParams,Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import axios from "axios";
+import "../styles/read.css";
 
 const Read = () => {
   const { id } = useParams();
@@ -30,34 +32,56 @@ const Read = () => {
 
   return (
     <>
-      {loading ? (
-        <h3>Cargando ...</h3>
-      ) : (
-        datos.map((item) => (
-          <>
-            <div className="container text-center mt-5">
-              <div className="card">
-                <h2 className="card-title">{item.name}</h2>
-                <img
-                  className="card-img-top"
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${item.id}.png`}
-                  alt=""
-                />
-                <div className="abilities">
-                  {item.abilities.map(poke=><>
-                  <div className="group">
-                    <h3 className="btn btn-danger">{poke.ability.name}</h3>
+      <Container>
+        {loading ? (
+          <h3>Cargando ...</h3>
+        ) : (
+          datos.map((item) => (
+            <>
+              <div className="container text-center">
+                <div className="cardRead">
+                  <div className="x align-right">
+                    <Link to={"/"} className="btn btn-danger">
+                      X
+                    </Link>
                   </div>
-                  </>)}
-                </div>
-                <div className="stats">
-                    {item.stats.map(poke=><h3>{poke.stat.name} : {poke.base_stat}</h3>)}
+                  <div className="text-center mt-2 text-primary">
+                    <h2 className="card-title">{item.name}</h2>
+                  </div>
+                  <div className="align-center mb-2">
+                    <img
+                      className="card-img-top img-fluid"
+                      src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${item.id}.png`}
+                      alt=""
+                    />
+                  </div>
+                  <h3 className="pt-2 pb-2 text-success">Habilidades</h3>
+                  <div className="abilities">
+                    
+                    {item.abilities.map((poke) => (
+                      <>
+                        <div className="group">
+                          <h3 className="btn btn-danger">
+                            {poke.ability.name}
+                          </h3>
+                        </div>
+                      </>
+                    ))}
+                  </div>
+                  <h3 className="pt-2 pb-2 text-success">Stats</h3>
+                  <div className="stats pb-4 mb-5">
+                    {item.stats.map((poke) => (
+                      <h3>
+                        <span className="text-warning">{poke.stat.name}</span> : {poke.base_stat}
+                      </h3>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          </>
-        ))
-      )}
+            </>
+          ))
+        )}
+      </Container>
     </>
   );
 };
