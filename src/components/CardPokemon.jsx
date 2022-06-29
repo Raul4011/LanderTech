@@ -24,7 +24,7 @@ const CardPokemon = ({ pokemon, loading }) => {
                     <h4 className="card-title mb-2 text-danger">{item.name}</h4>
                     <h5 className="">altura: {item.height}</h5>
                     <h5 className="mb-2">peso: {item.weight}</h5>
-                    <Link to={`/view/${item.id}`} className="btn btn-primary mt-2">Ver mas</Link>
+                    <Link to={`/pokemon/${item.name}`} className="btn btn-primary mt-2">Ver mas</Link>
                     
                   </div>
               </div>

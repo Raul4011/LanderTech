@@ -5,16 +5,22 @@ import { Container, Row } from "react-bootstrap";
 import CardPokemon from "./CardPokemon";
 import {Button} from "../styled-components/Button"
 import "../styles/Main.css"
+import {useNavigate} from "react-router-dom"
 
 const Main = () => {
+
+  let navigate = useNavigate();
+
   const [pokemones, setPokemones] = useState([]);
   const [loading, setLoading] = useState(true);
   const [prevPok, setPrevPoks] = useState();
   const [nextPok, setNextPok] = useState();
   const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/");
+  const [valorbusqueda,setValorbusqueda] = useState("")
 
   const handleSearch = () => {
     console.log("aqui buscaria mi pokemon con find o includes")
+    navigate(`/pokemon/${valorbusqueda}`)
   };
 
   const pokeFun = async () => {
@@ -51,11 +57,12 @@ const Main = () => {
         <h1 className="pt-3 text-primary">Pokedex Landertech</h1>
         <br />
 
-        <input type="text" placeholder="ingresa un nombre" />
+        <input type="text" placeholder="ingresa un nombre" onChange={(e)=>setValorbusqueda(e.target.value)}/>
         <Button type="button" onClick={handleSearch}>
           search
         </Button>
         <h3>Listado de pokemones</h3>
+        
         <br />
         <Row>
           <CardPokemon pokemon={pokemones} loading={loading} />
